@@ -24,44 +24,42 @@ import { ScreenTrackingService, UserTrackingService } from '@angular/fire/analyt
 export const FIREBASE_ADMIN = new InjectionToken<app.App>('firebase-admin');
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    HomeComponent,
-    MessagingComponent,
-    RemoteConfigComponent,
-    StorageComponent,
-    UpboatsComponent,
-  ],
-  imports: [
-    BrowserModule.withServerTransition({ appId: 'serverApp' }),
-    AppRoutingModule,
-    FunctionsModule,
-    AppCheckComponent,
-    AuthComponent,
-    DatabaseComponent,
-    FirestoreComponent,
-    FunctionsComponent,
-  ],
-  providers: [
-    ScreenTrackingService,
-    UserTrackingService,
-    provideFirebaseApp(() => initializeApp(environment.firebase)),
-    provideAppCheck((injector) =>  {
-      const admin = injector.get<app.App|null>(FIREBASE_ADMIN, null);
-      if (admin) {
-        const provider = new CustomProvider({ getToken: () =>
-          admin.
-          appCheck().
-          createToken(environment.firebase.appId, { ttlMillis: 604_800_000, /* 1 week */ }).
-          then(({ token, ttlMillis: expireTimeMillis }) => ({ token, expireTimeMillis } ))
-        });
-        return initializeAppCheck(undefined, { provider, isTokenAutoRefreshEnabled: false });
-      } else {
-        const provider = new ReCaptchaV3Provider(environment.recaptcha3SiteKey);
-        return initializeAppCheck(undefined, { provider, isTokenAutoRefreshEnabled: true });
-      }
-    }, [new Optional(), FIREBASE_ADMIN]),
-  ],
-  bootstrap: [ ],
+    imports: [
+        BrowserModule.withServerTransition({ appId: 'serverApp' }),
+        AppRoutingModule,
+        FunctionsModule,
+        AppCheckComponent,
+        AuthComponent,
+        DatabaseComponent,
+        FirestoreComponent,
+        FunctionsComponent,
+        AppComponent,
+        HomeComponent,
+        MessagingComponent,
+        RemoteConfigComponent,
+        StorageComponent,
+        UpboatsComponent,
+    ],
+    providers: [
+        ScreenTrackingService,
+        UserTrackingService,
+        provideFirebaseApp(() => initializeApp(environment.firebase)),
+        provideAppCheck((injector) => {
+            const admin = injector.get<app.App | null>(FIREBASE_ADMIN, null);
+            if (admin) {
+                const provider = new CustomProvider({ getToken: () => admin.
+                        appCheck().
+                        createToken(environment.firebase.appId, { ttlMillis: 604800000, /* 1 week */ }).
+                        then(({ token, ttlMillis: expireTimeMillis }) => ({ token, expireTimeMillis }))
+                });
+                return initializeAppCheck(undefined, { provider, isTokenAutoRefreshEnabled: false });
+            }
+            else {
+                const provider = new ReCaptchaV3Provider(environment.recaptcha3SiteKey);
+                return initializeAppCheck(undefined, { provider, isTokenAutoRefreshEnabled: true });
+            }
+        }, [new Optional(), FIREBASE_ADMIN]),
+    ],
+    bootstrap: [],
 })
 export class AppModule { }
