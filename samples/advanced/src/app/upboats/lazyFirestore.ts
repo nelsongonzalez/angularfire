@@ -7,10 +7,10 @@ import {
 import { map, switchMap, filter, tap } from 'rxjs/operators';
 import { firestore } from '../getFirestore';
 import type { app, firestore as adminFirestore } from 'firebase-admin';
-import { makeStateKey, TransferState } from '@angular/platform-browser';
+
 import { keepUnstableUntilFirst } from '@angular/fire';
 import { from, Observable, of } from 'rxjs';
-import { NgZone } from '@angular/core';
+import { NgZone, makeStateKey, TransferState } from '@angular/core';
 
 function isClientSnapshot(snap: QueryDocumentSnapshot|adminFirestore.QueryDocumentSnapshot): snap is QueryDocumentSnapshot {
     return (snap as QueryDocumentSnapshot).metadata !== undefined;
