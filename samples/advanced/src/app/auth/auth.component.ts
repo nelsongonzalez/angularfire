@@ -1,4 +1,5 @@
 import { Component, OnInit, OnDestroy, Optional } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { Auth, authState, signInAnonymously, signOut, User } from '@angular/fire/auth';
 import { EMPTY, Observable, Subscription } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -7,6 +8,8 @@ import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-auth',
+  standalone: true,
+  imports: [CommonModule],
   template: `
     <p>
       Auth!

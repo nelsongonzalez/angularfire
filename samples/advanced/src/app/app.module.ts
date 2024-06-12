@@ -26,11 +26,6 @@ export const FIREBASE_ADMIN = new InjectionToken<app.App>('firebase-admin');
 @NgModule({
   declarations: [
     AppComponent,
-    AppCheckComponent,
-    AuthComponent,
-    DatabaseComponent,
-    FirestoreComponent,
-    FunctionsComponent,
     HomeComponent,
     MessagingComponent,
     RemoteConfigComponent,
@@ -41,6 +36,15 @@ export const FIREBASE_ADMIN = new InjectionToken<app.App>('firebase-admin');
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
     AppRoutingModule,
     FunctionsModule,
+    AppCheckComponent,
+    AuthComponent,
+    DatabaseComponent,
+    FirestoreComponent,
+    FunctionsComponent,
+  ],
+  providers: [
+    ScreenTrackingService,
+    UserTrackingService,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideAppCheck((injector) =>  {
       const admin = injector.get<app.App|null>(FIREBASE_ADMIN, null);
@@ -57,10 +61,6 @@ export const FIREBASE_ADMIN = new InjectionToken<app.App>('firebase-admin');
         return initializeAppCheck(undefined, { provider, isTokenAutoRefreshEnabled: true });
       }
     }, [new Optional(), FIREBASE_ADMIN]),
-  ],
-  providers: [
-    ScreenTrackingService,
-    UserTrackingService,
   ],
   bootstrap: [ ],
 })

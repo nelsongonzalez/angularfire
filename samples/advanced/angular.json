@@ -49,12 +49,7 @@
             "optimization": true,
             "namedChunks": true,
             "serviceWorker": "ngsw-config.json",
-            "browser": "src/main.ts",
-            "server": "src/main.server.ts",
-            "prerender": true,
-            "ssr": {
-              "entry": "server.ts"
-            }
+            "browser": "src/main.ts"
           },
           "configurations": {
             "production": {
@@ -125,22 +120,6 @@
               "src/styles.css"
             ],
             "scripts": []
-          }
-        },
-        "deploy": {
-          "builder": "@angular/fire:deploy",
-          "options": {
-            "ssr": "cloud-functions",
-            "prerender": true,
-            "firebaseProject": "aftest-94085",
-            "firebaseHostingSite": "aftest-94085",
-            "functionName": "ssr_sample",
-            "functionsNodeVersion": "16",
-            "region": "us-central1",
-            "browserTarget": "sample:build:production",
-            "serverTarget": "sample:server:production",
-            "prerenderTarget": "sample:prerender:production",
-            "outputPath": "dist/sample/functions"
           }
         }
       }

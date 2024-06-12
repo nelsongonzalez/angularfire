@@ -3,9 +3,12 @@ import { Observable, of } from 'rxjs';
 import { startWith, switchMap, tap } from 'rxjs/operators';
 
 import { traceUntilFirst } from '@angular/fire/performance';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-firestore',
+  standalone: true,
+  imports: [CommonModule],
   template: `
     <p>
       Firestore!

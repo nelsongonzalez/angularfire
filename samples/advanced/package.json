@@ -9,8 +9,7 @@
     "analyze": "webpack-bundle-analyzer dist/sample/browser/stats.json",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "lint": "ng lint",
-    "serve:ssr:sample": "node dist/sample/server/server.mjs"
+    "lint": "ng lint"
   },
   "private": true,
   "dependencies": {
@@ -25,7 +24,6 @@
     "@angular/platform-server": "^18.0.2",
     "@angular/router": "^18.0.2",
     "@angular/service-worker": "^18.0.2",
-    "@angular/ssr": "^18.0.3",
     "cross-fetch": "^3.1.4",
     "express": "^4.18.2",
     "firebase-admin": "^10.0.2",

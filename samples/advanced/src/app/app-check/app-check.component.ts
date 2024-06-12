@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { getToken, AppCheck } from '@angular/fire/app-check';
 import { traceUntilFirst } from '@angular/fire/performance';
 import { from, Observable } from 'rxjs';
@@ -7,6 +8,8 @@ import { share, tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-app-check',
+  standalone: true,
+  imports: [CommonModule],
   template: `
     <p>
       App Check!

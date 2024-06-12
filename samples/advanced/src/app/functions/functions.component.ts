@@ -1,9 +1,12 @@
+import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Functions, httpsCallableData } from '@angular/fire/functions';
 import { EMPTY, Observable } from 'rxjs';
 
 @Component({
   selector: 'app-functions',
+  standalone: true,
+  imports: [CommonModule],
   template: `
     <p>
       Functions!
